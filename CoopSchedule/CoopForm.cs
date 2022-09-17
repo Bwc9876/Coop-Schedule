@@ -9,15 +9,70 @@ namespace CoopSchedule;
 
 public partial class CoopForm : Form
 {
-    private PersistentData _persistentData;
     private const string FileName = "data.json";
+    private PersistentData _persistentData;
 
     public CoopForm()
     {
         InitializeComponent();
     }
 
+    #region Generation
+
+    private void btnGenerate_Click(object sender, EventArgs e)
+    {
+        var diag = new SaveFileDialog
+        {
+            Filter = @"CSV Files (*.csv)|*.csv",
+            AddExtension = true,
+            DefaultExt = ".csv",
+            Title = @"Save Schedule",
+            FileName = $"Schedule-{DateTime.Now:yyyy-MM-dd}",
+            InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+        };
+
+        if (diag.ShowDialog() != DialogResult.OK) return;
+
+        var newTable = ScheduleHandler.GenerateTable(
+            _persistentData.Students.Count,
+            (int) numDays.Value,
+            _persistentData.Units.Select(u => u.MaxStudents).ToArray()
+        );
+
+        var unitNames = _persistentData.Units.Select(u => u.Name).ToArray();
+
+        for (uint i = 0; i < _persistentData.Students.Count; i++)
+            _persistentData.Students[(int) i].Units.AddRange(
+                newTable[i].Select(
+                    u => unitNames[(int) Math.Log(u, 2)]
+                )
+            );
+
+        _persistentData.Save(FileName);
+
+        ResetStudentsListBox();
+
+        ScheduleHandler.OutputTable(
+            newTable,
+            _persistentData.Students.Select(s => s.Name).ToArray(),
+            unitNames,
+            diag.FileName
+        );
+
+        var result = MessageBox.Show(
+            @"Done, would you like to open the schedule?",
+            @"Done",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+        );
+
+        if (result == DialogResult.Yes) Process.Start(diag.FileName);
+    }
+
+    #endregion
+
     #region Data
+
     private void CoopForm_Load(object sender, EventArgs e)
     {
         _persistentData = PersistentData.Load(FileName);
@@ -29,19 +84,19 @@ public partial class CoopForm : Form
     {
         _persistentData.Save(FileName);
     }
-    
+
     private void saveToolStripMenuItem_Click(object sender, EventArgs e)
     {
         _persistentData.Save(FileName);
     }
-    
+
     private void resetStudentUnitsToolStripMenuItem_Click(object sender, EventArgs e)
     {
         if (MessageBox.Show(@"This will clear the previous units all students have been in, are you sure?", @"Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
         _persistentData.Students.ForEach(s => s.Units.Clear());
         ResetStudentsListBox();
     }
-    
+
     private void resetAllToolStripMenuItem_Click(object sender, EventArgs e)
     {
         if (MessageBox.Show(@"This will clear ALL data, are you sure?", @"Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
@@ -51,7 +106,11 @@ public partial class CoopForm : Form
         ResetStudentsListBox();
     }
 
-    private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Close();
+    private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        Close();
+    }
+
     #endregion
 
     #region Units
@@ -92,10 +151,7 @@ public partial class CoopForm : Form
 
     private void txtUnitName_TextChanged(object sender, EventArgs e)
     {
-        if (lstUnits.SelectedItem is UnitData)
-        {
-            _persistentData.Units[lstUnits.SelectedIndex].Name = txtUnitName.Text;
-        }
+        if (lstUnits.SelectedItem is UnitData) _persistentData.Units[lstUnits.SelectedIndex].Name = txtUnitName.Text;
 
         ResetUnitListBox();
     }
@@ -118,13 +174,9 @@ public partial class CoopForm : Form
     private void lstUnits_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (lstUnits.SelectedItem is UnitData data)
-        {
             ShowUnit(data);
-        }
         else
-        {
             grpActiveUnit.Visible = false;
-        }
     }
 
     #endregion
@@ -174,21 +226,14 @@ public partial class CoopForm : Form
     private void lstStudents_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (lstStudents.SelectedItem is StudentData data)
-        {
             ShowStudent(data);
-        }
         else
-        {
             grpActiveStudent.Visible = false;
-        }
     }
 
     private void txtStudentName_TextChanged(object sender, EventArgs e)
     {
-        if (lstStudents.SelectedItem is StudentData)
-        {
-            _persistentData.Students[lstStudents.SelectedIndex].Name = txtStudentName.Text;
-        }
+        if (lstStudents.SelectedItem is StudentData) _persistentData.Students[lstStudents.SelectedIndex].Name = txtStudentName.Text;
 
         ResetStudentsListBox();
     }
@@ -199,65 +244,6 @@ public partial class CoopForm : Form
         _persistentData.Students[lstStudents.SelectedIndex].Units.RemoveAt(lstStudentUnits.SelectedIndex);
         lstStudentUnits.Items.Clear();
         lstStudentUnits.Items.AddRange(_persistentData.Students[lstStudents.SelectedIndex].Units.ToArray());
-    }
-
-    #endregion
-
-    #region Generation
-
-    private void btnGenerate_Click(object sender, EventArgs e)
-    {
-        var diag = new SaveFileDialog
-        {
-            Filter = @"CSV Files (*.csv)|*.csv",
-            AddExtension = true,
-            DefaultExt = ".csv",
-            Title = @"Save Schedule",
-            FileName = $"Schedule-{DateTime.Now:yyyy-MM-dd}",
-            InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-        };
-
-        if (diag.ShowDialog() != DialogResult.OK) return;
-
-        var newTable = ScheduleHandler.GenerateTable(
-            _persistentData.Students.Count,
-            (int) numDays.Value,
-            _persistentData.Units.Select(u => u.MaxStudents).ToArray()
-        );
-
-        var unitNames = _persistentData.Units.Select(u => u.Name).ToArray();
-
-        for (uint i = 0; i < _persistentData.Students.Count; i++)
-        {
-            _persistentData.Students[(int) i].Units.AddRange(
-                newTable[i].Select(
-                    u => unitNames[(int) Math.Log(u, 2)]
-                )
-            );
-        }
-        
-        _persistentData.Save(FileName);
-        
-        ResetStudentsListBox();
-
-        ScheduleHandler.OutputTable(
-            newTable,
-            _persistentData.Students.Select(s => s.Name).ToArray(),
-            unitNames,
-            diag.FileName
-        );
-
-        var result = MessageBox.Show(
-            @"Done, would you like to open the schedule?",
-            @"Done",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question
-        );
-
-        if (result == DialogResult.Yes)
-        {
-            Process.Start(diag.FileName);
-        }
     }
 
     #endregion

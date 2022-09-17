@@ -347,14 +347,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(743, 350);
+            this.ClientSize = new System.Drawing.Size(743, 351);
             this.Controls.Add(this.grpGenerate);
             this.Controls.Add(this.grpStudents);
             this.Controls.Add(this.grpUnits);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(759, 390);
             this.Name = "CoopForm";
             this.ShowIcon = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Co-Op Scheduler";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CoopForm_FormClosing);
             this.Load += new System.EventHandler(this.CoopForm_Load);
