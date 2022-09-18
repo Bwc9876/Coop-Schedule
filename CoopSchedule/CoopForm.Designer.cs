@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CoopForm));
             this.grpUnits = new System.Windows.Forms.GroupBox();
             this.btnRemoveUnit = new System.Windows.Forms.Button();
             this.btnAddUnit = new System.Windows.Forms.Button();
@@ -73,31 +74,45 @@
             this.grpUnits.Controls.Add(this.btnAddUnit);
             this.grpUnits.Controls.Add(this.grpActiveUnit);
             this.grpUnits.Controls.Add(this.lstUnits);
+            this.grpUnits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.grpUnits.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.grpUnits.Location = new System.Drawing.Point(12, 36);
             this.grpUnits.Name = "grpUnits";
-            this.grpUnits.Size = new System.Drawing.Size(355, 209);
+            this.grpUnits.Size = new System.Drawing.Size(355, 223);
             this.grpUnits.TabIndex = 0;
             this.grpUnits.TabStop = false;
             this.grpUnits.Text = "Units";
             // 
             // btnRemoveUnit
             // 
-            this.btnRemoveUnit.Location = new System.Drawing.Point(132, 168);
+            this.btnRemoveUnit.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnRemoveUnit.FlatAppearance.BorderColor = System.Drawing.Color.Thistle;
+            this.btnRemoveUnit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveUnit.Image = ((System.Drawing.Image) (resources.GetObject("btnRemoveUnit.Image")));
+            this.btnRemoveUnit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemoveUnit.Location = new System.Drawing.Point(132, 177);
             this.btnRemoveUnit.Name = "btnRemoveUnit";
-            this.btnRemoveUnit.Size = new System.Drawing.Size(217, 24);
+            this.btnRemoveUnit.Size = new System.Drawing.Size(217, 35);
             this.btnRemoveUnit.TabIndex = 3;
             this.btnRemoveUnit.Text = "Remove Unit";
-            this.btnRemoveUnit.UseVisualStyleBackColor = true;
+            this.btnRemoveUnit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRemoveUnit.UseVisualStyleBackColor = false;
             this.btnRemoveUnit.Click += new System.EventHandler(this.btnRemoveUnit_Click);
             // 
             // btnAddUnit
             // 
+            this.btnAddUnit.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnAddUnit.FlatAppearance.BorderColor = System.Drawing.Color.Thistle;
+            this.btnAddUnit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddUnit.Image = ((System.Drawing.Image) (resources.GetObject("btnAddUnit.Image")));
+            this.btnAddUnit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddUnit.Location = new System.Drawing.Point(132, 130);
             this.btnAddUnit.Name = "btnAddUnit";
-            this.btnAddUnit.Size = new System.Drawing.Size(217, 32);
+            this.btnAddUnit.Size = new System.Drawing.Size(217, 41);
             this.btnAddUnit.TabIndex = 2;
             this.btnAddUnit.Text = "Add Unit";
-            this.btnAddUnit.UseVisualStyleBackColor = true;
+            this.btnAddUnit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAddUnit.UseVisualStyleBackColor = false;
             this.btnAddUnit.Click += new System.EventHandler(this.btnAddUnit_Click);
             // 
             // grpActiveUnit
@@ -125,9 +140,10 @@
             // 
             // txtUnitStudents
             // 
+            this.txtUnitStudents.BackColor = System.Drawing.Color.GhostWhite;
             this.txtUnitStudents.Location = new System.Drawing.Point(102, 68);
             this.txtUnitStudents.Name = "txtUnitStudents";
-            this.txtUnitStudents.Size = new System.Drawing.Size(94, 20);
+            this.txtUnitStudents.Size = new System.Drawing.Size(94, 22);
             this.txtUnitStudents.TabIndex = 2;
             this.txtUnitStudents.TextChanged += new System.EventHandler(this.txtUnitStudents_TextChanged);
             // 
@@ -142,18 +158,21 @@
             // 
             // txtUnitName
             // 
+            this.txtUnitName.BackColor = System.Drawing.Color.GhostWhite;
             this.txtUnitName.Location = new System.Drawing.Point(102, 31);
             this.txtUnitName.Name = "txtUnitName";
-            this.txtUnitName.Size = new System.Drawing.Size(94, 20);
+            this.txtUnitName.Size = new System.Drawing.Size(94, 22);
             this.txtUnitName.TabIndex = 0;
             this.txtUnitName.TextChanged += new System.EventHandler(this.txtUnitName_TextChanged);
             // 
             // lstUnits
             // 
+            this.lstUnits.BackColor = System.Drawing.Color.GhostWhite;
+            this.lstUnits.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstUnits.FormattingEnabled = true;
             this.lstUnits.Location = new System.Drawing.Point(6, 19);
             this.lstUnits.Name = "lstUnits";
-            this.lstUnits.Size = new System.Drawing.Size(120, 173);
+            this.lstUnits.Size = new System.Drawing.Size(120, 195);
             this.lstUnits.TabIndex = 0;
             this.lstUnits.SelectedIndexChanged += new System.EventHandler(this.lstUnits_SelectedIndexChanged);
             // 
@@ -165,19 +184,25 @@
             this.grpStudents.Controls.Add(this.lstStudents);
             this.grpStudents.Location = new System.Drawing.Point(373, 36);
             this.grpStudents.Name = "grpStudents";
-            this.grpStudents.Size = new System.Drawing.Size(363, 306);
+            this.grpStudents.Size = new System.Drawing.Size(363, 329);
             this.grpStudents.TabIndex = 1;
             this.grpStudents.TabStop = false;
             this.grpStudents.Text = "Students";
             // 
             // btnRemoveStudent
             // 
-            this.btnRemoveStudent.Location = new System.Drawing.Point(132, 272);
+            this.btnRemoveStudent.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnRemoveStudent.FlatAppearance.BorderColor = System.Drawing.Color.Thistle;
+            this.btnRemoveStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveStudent.Image = ((System.Drawing.Image) (resources.GetObject("btnRemoveStudent.Image")));
+            this.btnRemoveStudent.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemoveStudent.Location = new System.Drawing.Point(132, 280);
             this.btnRemoveStudent.Name = "btnRemoveStudent";
-            this.btnRemoveStudent.Size = new System.Drawing.Size(217, 24);
+            this.btnRemoveStudent.Size = new System.Drawing.Size(217, 37);
             this.btnRemoveStudent.TabIndex = 5;
             this.btnRemoveStudent.Text = "Remove Student";
-            this.btnRemoveStudent.UseVisualStyleBackColor = true;
+            this.btnRemoveStudent.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRemoveStudent.UseVisualStyleBackColor = false;
             this.btnRemoveStudent.Click += new System.EventHandler(this.btnRemoveStudent_Click);
             // 
             // grpActiveStudent
@@ -197,12 +222,18 @@
             // 
             // btnRemoveStudentFromUnit
             // 
-            this.btnRemoveStudentFromUnit.Location = new System.Drawing.Point(21, 167);
+            this.btnRemoveStudentFromUnit.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnRemoveStudentFromUnit.FlatAppearance.BorderColor = System.Drawing.Color.Thistle;
+            this.btnRemoveStudentFromUnit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveStudentFromUnit.Image = ((System.Drawing.Image) (resources.GetObject("btnRemoveStudentFromUnit.Image")));
+            this.btnRemoveStudentFromUnit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemoveStudentFromUnit.Location = new System.Drawing.Point(21, 154);
             this.btnRemoveStudentFromUnit.Name = "btnRemoveStudentFromUnit";
-            this.btnRemoveStudentFromUnit.Size = new System.Drawing.Size(75, 23);
+            this.btnRemoveStudentFromUnit.Size = new System.Drawing.Size(75, 32);
             this.btnRemoveStudentFromUnit.TabIndex = 8;
             this.btnRemoveStudentFromUnit.Text = "Remove";
-            this.btnRemoveStudentFromUnit.UseVisualStyleBackColor = true;
+            this.btnRemoveStudentFromUnit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRemoveStudentFromUnit.UseVisualStyleBackColor = false;
             this.btnRemoveStudentFromUnit.Click += new System.EventHandler(this.btnRemoveStudentFromUnit_Click);
             // 
             // label4
@@ -216,10 +247,12 @@
             // 
             // lstStudentUnits
             // 
+            this.lstStudentUnits.BackColor = System.Drawing.Color.GhostWhite;
+            this.lstStudentUnits.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstStudentUnits.FormattingEnabled = true;
             this.lstStudentUnits.Location = new System.Drawing.Point(102, 82);
             this.lstStudentUnits.Name = "lstStudentUnits";
-            this.lstStudentUnits.Size = new System.Drawing.Size(94, 108);
+            this.lstStudentUnits.Size = new System.Drawing.Size(94, 104);
             this.lstStudentUnits.TabIndex = 6;
             // 
             // label3
@@ -233,28 +266,37 @@
             // 
             // txtStudentName
             // 
+            this.txtStudentName.BackColor = System.Drawing.Color.GhostWhite;
             this.txtStudentName.Location = new System.Drawing.Point(102, 28);
             this.txtStudentName.Name = "txtStudentName";
-            this.txtStudentName.Size = new System.Drawing.Size(94, 20);
+            this.txtStudentName.Size = new System.Drawing.Size(94, 22);
             this.txtStudentName.TabIndex = 4;
             this.txtStudentName.TextChanged += new System.EventHandler(this.txtStudentName_TextChanged);
             // 
             // btnAddStudent
             // 
+            this.btnAddStudent.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnAddStudent.FlatAppearance.BorderColor = System.Drawing.Color.Thistle;
+            this.btnAddStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddStudent.Image = ((System.Drawing.Image) (resources.GetObject("btnAddStudent.Image")));
+            this.btnAddStudent.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddStudent.Location = new System.Drawing.Point(132, 229);
             this.btnAddStudent.Name = "btnAddStudent";
-            this.btnAddStudent.Size = new System.Drawing.Size(217, 37);
+            this.btnAddStudent.Size = new System.Drawing.Size(217, 45);
             this.btnAddStudent.TabIndex = 4;
             this.btnAddStudent.Text = "Add Student";
-            this.btnAddStudent.UseVisualStyleBackColor = true;
+            this.btnAddStudent.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAddStudent.UseVisualStyleBackColor = false;
             this.btnAddStudent.Click += new System.EventHandler(this.btnAddStudent_Click);
             // 
             // lstStudents
             // 
+            this.lstStudents.BackColor = System.Drawing.Color.GhostWhite;
+            this.lstStudents.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstStudents.FormattingEnabled = true;
-            this.lstStudents.Location = new System.Drawing.Point(6, 19);
+            this.lstStudents.Location = new System.Drawing.Point(6, 21);
             this.lstStudents.Name = "lstStudents";
-            this.lstStudents.Size = new System.Drawing.Size(120, 277);
+            this.lstStudents.Size = new System.Drawing.Size(120, 299);
             this.lstStudents.TabIndex = 0;
             this.lstStudents.SelectedIndexChanged += new System.EventHandler(this.lstStudents_SelectedIndexChanged);
             // 
@@ -263,83 +305,109 @@
             this.grpGenerate.Controls.Add(this.btnGenerate);
             this.grpGenerate.Controls.Add(this.lblDays);
             this.grpGenerate.Controls.Add(this.numDays);
-            this.grpGenerate.Location = new System.Drawing.Point(12, 251);
+            this.grpGenerate.Location = new System.Drawing.Point(12, 265);
             this.grpGenerate.Name = "grpGenerate";
-            this.grpGenerate.Size = new System.Drawing.Size(355, 91);
+            this.grpGenerate.Size = new System.Drawing.Size(355, 100);
             this.grpGenerate.TabIndex = 2;
             this.grpGenerate.TabStop = false;
             this.grpGenerate.Text = "Generate";
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(185, 19);
+            this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGenerate.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnGenerate.FlatAppearance.BorderColor = System.Drawing.Color.Thistle;
+            this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerate.Image = ((System.Drawing.Image) (resources.GetObject("btnGenerate.Image")));
+            this.btnGenerate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGenerate.Location = new System.Drawing.Point(175, 27);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(164, 53);
             this.btnGenerate.TabIndex = 3;
             this.btnGenerate.Text = "Generate!";
-            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGenerate.UseVisualStyleBackColor = false;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // lblDays
             // 
-            this.lblDays.Location = new System.Drawing.Point(6, 35);
+            this.lblDays.Location = new System.Drawing.Point(16, 45);
             this.lblDays.Name = "lblDays";
-            this.lblDays.Size = new System.Drawing.Size(90, 20);
+            this.lblDays.Size = new System.Drawing.Size(63, 22);
             this.lblDays.TabIndex = 4;
-            this.lblDays.Text = "Number Of Days";
+            this.lblDays.Text = "# Of Days";
             this.lblDays.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // numDays
             // 
-            this.numDays.Location = new System.Drawing.Point(102, 37);
+            this.numDays.BackColor = System.Drawing.Color.GhostWhite;
+            this.numDays.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numDays.Location = new System.Drawing.Point(85, 45);
             this.numDays.Maximum = new decimal(new int[] {10, 0, 0, 0});
             this.numDays.Minimum = new decimal(new int[] {1, 0, 0, 0});
             this.numDays.Name = "numDays";
-            this.numDays.Size = new System.Drawing.Size(74, 20);
+            this.numDays.Size = new System.Drawing.Size(74, 22);
             this.numDays.TabIndex = 3;
+            this.numDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numDays.Value = new decimal(new int[] {4, 0, 0, 0});
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.AliceBlue;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(743, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(743, 30);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.saveToolStripMenuItem, this.resetStudentUnitsToolStripMenuItem, this.resetAllToolStripMenuItem, this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Image = ((System.Drawing.Image) (resources.GetObject("fileToolStripMenuItem.Image")));
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(65, 26);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveToolStripMenuItem
             // 
+            this.saveToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
+            this.saveToolStripMenuItem.Image = ((System.Drawing.Image) (resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.saveToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // resetStudentUnitsToolStripMenuItem
             // 
+            this.resetStudentUnitsToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
+            this.resetStudentUnitsToolStripMenuItem.Image = ((System.Drawing.Image) (resources.GetObject("resetStudentUnitsToolStripMenuItem.Image")));
             this.resetStudentUnitsToolStripMenuItem.Name = "resetStudentUnitsToolStripMenuItem";
-            this.resetStudentUnitsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.resetStudentUnitsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.resetStudentUnitsToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.resetStudentUnitsToolStripMenuItem.Text = "Reset Student Units";
             this.resetStudentUnitsToolStripMenuItem.Click += new System.EventHandler(this.resetStudentUnitsToolStripMenuItem_Click);
             // 
             // resetAllToolStripMenuItem
             // 
+            this.resetAllToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
+            this.resetAllToolStripMenuItem.Image = ((System.Drawing.Image) (resources.GetObject("resetAllToolStripMenuItem.Image")));
             this.resetAllToolStripMenuItem.Name = "resetAllToolStripMenuItem";
-            this.resetAllToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.resetAllToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.resetAllToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.resetAllToolStripMenuItem.Text = "Reset All";
             this.resetAllToolStripMenuItem.Click += new System.EventHandler(this.resetAllToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
+            this.exitToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
+            this.exitToolStripMenuItem.Image = ((System.Drawing.Image) (resources.GetObject("exitToolStripMenuItem.Image")));
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.exitToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -347,16 +415,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(743, 351);
+            this.BackColor = System.Drawing.Color.Lavender;
+            this.ClientSize = new System.Drawing.Size(743, 373);
             this.Controls.Add(this.grpGenerate);
             this.Controls.Add(this.grpStudents);
             this.Controls.Add(this.grpUnits);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(759, 390);
+            this.MaximumSize = new System.Drawing.Size(759, 412);
             this.Name = "CoopForm";
-            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Co-Op Scheduler";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CoopForm_FormClosing);
