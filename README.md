@@ -96,4 +96,8 @@ Doing this, however, can result in a student not being able to be in any unit. T
 
 ![Table Generated From App](https://user-images.githubusercontent.com/25644444/190924870-9a56f4f0-6fb2-49e3-a50e-caa64f550aab.png)
 
+## Works Cited
 
+Gumin, M. (2016). Wave Function Collapse Algorithm (Version 1.0) [Computer software]. https://github.com/mxgmn/WaveFunctionCollapse  
+Wave function collapse. (2022, September 8). In Wikipedia. https://en.wikipedia.org/wiki/Wave_function_collapse  
+Entropy (information theory). (2022, September 8). In Wikipedia. https://en.wikipedia.org/wiki/Entropy_(information_theory)  
