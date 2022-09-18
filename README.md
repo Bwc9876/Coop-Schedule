@@ -61,7 +61,7 @@ Lets say we choose B, now our table will look something like this:
 
 But wait! now that (0, 0) is B, we know that (1, 0) and (0, 1) both can't be B!
 
-This is where the constrain stage comes in, once we observe an element we look in the row and column of that element and restrict the elements in that row accordingly.  
+This is where the constrain stage comes in, once we observe an element we look in the row and column of that element and restrict the elements in that row and column accordingly.  
 
 So for (1, 0) we know that a unit can only appear in a row once, so we'll limit the element to 10₂ (2).  
 
@@ -89,6 +89,8 @@ We've successfully observed all elements of the table!
 One last thing, we need to be able to remember what units a student for subsequent generations, this is simply achieved by constraining the elements before collapsing any.
 
 Doing this, however, can result in a student not being able to be in any unit. This is called a contradictory state.
+
+Overall, this algorithm is pretty fast and doesn't conflict often. I think more scheduling programs could benefit from using WFC.
 
 ## Screenshots
 
