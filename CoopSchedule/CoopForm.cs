@@ -33,7 +33,7 @@ public partial class CoopForm : Form
 
         if (diag.ShowDialog() != DialogResult.OK) return;
 
-        var previousUnits = _persistentData.Students.Select(s => { return s.Units.Select(u => _persistentData.Units.FindIndex(u2 => u2.Name == u)).ToArray(); });
+        var previousUnits = _persistentData.Students.Select(s => { return s.units.Select(u => _persistentData.Units.FindIndex(u2 => u2.Name == u)).ToArray(); });
 
         var maxAppearances = _persistentData.Units.Select(u => u.MaxStudents).ToArray();
 
@@ -57,7 +57,7 @@ public partial class CoopForm : Form
         var unitNames = _persistentData.Units.Select(u => u.Name).ToArray();
 
         for (uint i = 0; i < _persistentData.Students.Count; i++)
-            _persistentData.Students[(int) i].Units.AddRange(
+            _persistentData.Students[(int) i].units.AddRange(
                 newTable[i].Select(
                     u => unitNames[(int) Math.Log(u, 2)]
                 )
@@ -69,7 +69,7 @@ public partial class CoopForm : Form
 
         ScheduleHandler.OutputTable(
             newTable,
-            _persistentData.Students.Select(s => s.Name).ToArray(),
+            _persistentData.Students.Select(s => s.name).ToArray(),
             unitNames,
             diag.FileName
         );
@@ -108,7 +108,7 @@ public partial class CoopForm : Form
     private void resetStudentUnitsToolStripMenuItem_Click(object sender, EventArgs e)
     {
         if (MessageBox.Show(@"This will clear the previous units all students have been in, are you sure?", @"Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
-        _persistentData.Students.ForEach(s => s.Units.Clear());
+        _persistentData.Students.ForEach(s => s.units.Clear());
         ResetStudentsListBox();
     }
 
@@ -207,7 +207,7 @@ public partial class CoopForm : Form
         if (lstStudents.SelectedIndex != -1)
         {
             lstStudentUnits.Items.Clear();
-            lstStudentUnits.Items.AddRange(_persistentData.Students[lstStudents.SelectedIndex].Units.ToArray());
+            lstStudentUnits.Items.AddRange(_persistentData.Students[lstStudents.SelectedIndex].units.ToArray());
         }
     }
 
@@ -215,8 +215,8 @@ public partial class CoopForm : Form
     {
         var student = new StudentData
         {
-            Name = "New Student",
-            Units = new List<string>()
+            name = "New Student",
+            units = new List<string>()
         };
         _persistentData.Students.Add(student);
         ResetStudentsListBox();
@@ -232,9 +232,9 @@ public partial class CoopForm : Form
     private void ShowStudent(StudentData student)
     {
         grpActiveStudent.Visible = true;
-        txtStudentName.Text = student.Name;
+        txtStudentName.Text = student.name;
         lstStudentUnits.Items.Clear();
-        lstStudentUnits.Items.AddRange(student.Units.ToArray());
+        lstStudentUnits.Items.AddRange(student.units.ToArray());
     }
 
     private void lstStudents_SelectedIndexChanged(object sender, EventArgs e)
@@ -247,7 +247,7 @@ public partial class CoopForm : Form
 
     private void txtStudentName_TextChanged(object sender, EventArgs e)
     {
-        if (lstStudents.SelectedItem is StudentData) _persistentData.Students[lstStudents.SelectedIndex].Name = txtStudentName.Text;
+        if (lstStudents.SelectedItem is StudentData) _persistentData.Students[lstStudents.SelectedIndex].name = txtStudentName.Text;
 
         lstStudents.Items[lstStudents.SelectedIndex] = _persistentData.Students[lstStudents.SelectedIndex];
     }
@@ -255,9 +255,9 @@ public partial class CoopForm : Form
     private void btnRemoveStudentFromUnit_Click(object sender, EventArgs e)
     {
         if (lstStudentUnits.SelectedIndex < 0) return;
-        _persistentData.Students[lstStudents.SelectedIndex].Units.RemoveAt(lstStudentUnits.SelectedIndex);
+        _persistentData.Students[lstStudents.SelectedIndex].units.RemoveAt(lstStudentUnits.SelectedIndex);
         lstStudentUnits.Items.Clear();
-        lstStudentUnits.Items.AddRange(_persistentData.Students[lstStudents.SelectedIndex].Units.ToArray());
+        lstStudentUnits.Items.AddRange(_persistentData.Students[lstStudents.SelectedIndex].units.ToArray());
     }
 
     #endregion

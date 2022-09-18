@@ -6,11 +6,11 @@ namespace CoopSchedule.External;
 [JsonObject]
 public class StudentData
 {
-    public string Name;
-    public List<string> Units;
+    public string name;
+    public List<string> units;
 
     public override string ToString()
     {
-        return Name;
+        return name;
     }
 }
