@@ -33,11 +33,26 @@ public partial class CoopForm : Form
 
         if (diag.ShowDialog() != DialogResult.OK) return;
 
+        var previousUnits = _persistentData.Students.Select(s => { return s.Units.Select(u => _persistentData.Units.FindIndex(u2 => u2.Name == u)).ToArray(); });
+
+        var maxAppearances = _persistentData.Units.Select(u => u.MaxStudents).ToArray();
+
         var newTable = ScheduleHandler.GenerateTable(
             _persistentData.Students.Count,
             (int) numDays.Value,
-            _persistentData.Units.Select(u => u.MaxStudents).ToArray()
+            maxAppearances,
+            previousUnits.ToArray()
         );
+
+        if (!newTable.CheckValid(maxAppearances))
+        {
+            MessageBox.Show(
+                @"Invalid schedule generated. There may not be enough units for each student. Please try again or clear previous units for students",
+                @"Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            return;
+        }
 
         var unitNames = _persistentData.Units.Select(u => u.Name).ToArray();
 
@@ -152,8 +167,7 @@ public partial class CoopForm : Form
     private void txtUnitName_TextChanged(object sender, EventArgs e)
     {
         if (lstUnits.SelectedItem is UnitData) _persistentData.Units[lstUnits.SelectedIndex].Name = txtUnitName.Text;
-
-        ResetUnitListBox();
+        lstUnits.Items[lstUnits.SelectedIndex] = _persistentData.Units[lstUnits.SelectedIndex];
     }
 
     private void txtUnitStudents_TextChanged(object sender, EventArgs e)
@@ -168,7 +182,7 @@ public partial class CoopForm : Form
             // Don't save the value
         }
 
-        ResetUnitListBox();
+        lstUnits.Items[lstUnits.SelectedIndex] = _persistentData.Units[lstUnits.SelectedIndex];
     }
 
     private void lstUnits_SelectedIndexChanged(object sender, EventArgs e)
@@ -235,7 +249,7 @@ public partial class CoopForm : Form
     {
         if (lstStudents.SelectedItem is StudentData) _persistentData.Students[lstStudents.SelectedIndex].Name = txtStudentName.Text;
 
-        ResetStudentsListBox();
+        lstStudents.Items[lstStudents.SelectedIndex] = _persistentData.Students[lstStudents.SelectedIndex];
     }
 
     private void btnRemoveStudentFromUnit_Click(object sender, EventArgs e)
