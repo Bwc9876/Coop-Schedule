@@ -11,7 +11,7 @@ public static class ScheduleHandler
     public static ScheduleTable GenerateTable(int students, int days, int[] states, int[][] rawPreviousStates)
     {
         var table = new ScheduleTable((uint) students, (uint) days, (uint) states.Length);
-        
+
         var previousStates = new uint[students];
 
         for (var i = 0; i < rawPreviousStates.Length; i++)
@@ -19,11 +19,10 @@ public static class ScheduleHandler
             var previousState = rawPreviousStates[i];
             previousStates[i] = 0;
             foreach (var unit in previousState)
-            {
-                if (unit != -1) previousStates[i] |= (uint) Math.Pow(2, unit);
-            }
+                if (unit != -1)
+                    previousStates[i] |= (uint) Math.Pow(2, unit);
         }
-        
+
         table.PreCollapse(previousStates);
 
         // The table should collapse
@@ -112,13 +111,9 @@ public static class ScheduleHandler
         public void PreCollapse(uint[] states)
         {
             for (uint i = 0; i < _table.Length; i++)
-            {
-                for (uint j = 0; j < this[i].Length; j++)
-                {
-                    this[i, j] ^= states[i];
-                }
-            }
-        } 
+            for (uint j = 0; j < this[i].Length; j++)
+                this[i, j] ^= states[i];
+        }
 
         public uint Collapse(uint row, uint column)
         {
@@ -135,7 +130,7 @@ public static class ScheduleHandler
             for (uint i = 0; i < _table.Length; i++)
             {
                 uint stateTracker = 0;
-                foreach (uint j in this[i])
+                foreach (var j in this[i])
                 {
                     if (j == 0)
                         return false;
@@ -144,20 +139,18 @@ public static class ScheduleHandler
                     stateTracker |= j;
                 }
             }
-            
+
             // Check Columns
             foreach (var max in maxAppearancesForCols)
+            foreach (var column in this[0].Select((_, c) => _table.Select(r => r[c])))
             {
-                foreach (var column in this[0].Select((_, c) => _table.Select(r => r[c])))
+                uint stateTracker = 0;
+                foreach (var j in column)
                 {
-                    uint stateTracker = 0;
-                    foreach (var j in column)
-                    {
-                        if ((j & stateTracker) != 0)
-                            stateTracker++;
-                        if (stateTracker > max)
-                            return false;
-                    }
+                    if ((j & stateTracker) != 0)
+                        stateTracker++;
+                    if (stateTracker > max)
+                        return false;
                 }
             }
 
