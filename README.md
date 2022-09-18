@@ -7,11 +7,11 @@ Each student needs to be scheduled into a unit for a specific number of days.
 
 Once a student is put in a unit for one day, they cannot be placed in that unit again.
 
-A unit can only take a vertain number of students per-day.
+A unit can only take a certain number of students per-day.
 
 ## Solution
 
-This problem can be solved using wave function collapse, a procedural generation algorithm that abides by specific constaints.
+This problem can be solved using wave function collapse, a procedural generation algorithm that abides by specific constraints.
 
 Let's imagine the schedule as a table, where each element represents the possible units a student can be in.
 
@@ -22,19 +22,19 @@ Let's imagine the schedule as a table, where each element represents the possibl
 
 Let's also imagine that we have 2 units, A and B. Each of these can only have one student.
 
-To repesent the possible state of an element we use a boolean array, where each index corresponds to a unit and each value determines whether that unit is a valid state for the element.
+To represent the possible state of an element we use a boolean array, where each index corresponds to a unit and each value determines whether that unit is a valid state for the element.
 
 So if an element can be any unit, it would be [True, True]  
 If it can't be any (contradictory state), it would be [False, False]  
 If it can only be A, then it would be [True, False]  
 And if it was B it would be [False, True]  
 
-These boolean arrays will be repesented as binary numbers, each boolean corresponds to the bit in the number.
+These boolean arrays will be represented as binary numbers, each boolean corresponds to the bit in the number.
 
 So if an element can be any unit it would be 3 (because 11₂ = 3)  
 If it can't be any is would be 0 (because 00₂ = 0)  
 If it can only be A, then it would be 2 (because 10₂ = 2)  
-And if it was B it would be 1 (becuase 01₂ = 1)  
+And if it was B it would be 1 (because 01₂ = 1)  
 
 We represent the elements like this because we can utilize bitwise operations to save on time.  
 
@@ -61,7 +61,7 @@ Lets say we choose B, now our table will look something like this:
 
 But wait! now that (0, 0) is B, we know that (1, 0) and (0, 1) both can't be B!
 
-This is where the constain stage comes in, once we observe an element we look in the row and column of that element and restrict the elements in that row accordingly.  
+This is where the constrain stage comes in, once we observe an element we look in the row and column of that element and restrict the elements in that row accordingly.  
 
 So for (1, 0) we know that a unit can only appear in a row once, so we'll limit the element to 10₂ (2).  
 
