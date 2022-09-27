@@ -251,6 +251,17 @@ public partial class CoopForm : Form
 
         lstStudents.Items[lstStudents.SelectedIndex] = _persistentData.Students[lstStudents.SelectedIndex];
     }
+    
+    private void btnAddStudentUnit_Click(object sender, EventArgs e)
+    {
+        if (lstUnits.SelectedIndex < 0)
+        {
+            MessageBox.Show("Please select a unit to add to the student", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        _persistentData.Students[lstStudents.SelectedIndex].units.Add(lstUnits.SelectedItem.ToString());
+        lstStudentUnits.Items.Clear();
+        lstStudentUnits.Items.AddRange(_persistentData.Students[lstStudents.SelectedIndex].units.ToArray());
+    }
 
     private void btnRemoveStudentFromUnit_Click(object sender, EventArgs e)
     {
@@ -261,4 +272,6 @@ public partial class CoopForm : Form
     }
 
     #endregion
+
+    
 }
