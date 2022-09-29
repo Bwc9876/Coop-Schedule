@@ -256,7 +256,13 @@ public partial class CoopForm : Form
     {
         if (lstUnits.SelectedIndex < 0)
         {
-            MessageBox.Show("Please select a unit to add to the student", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Please select a unit to add the student to", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+        if (_persistentData.Students[lstStudents.SelectedIndex].units.Exists(s => s == lstUnits.SelectedItem.ToString()))
+        {
+            MessageBox.Show("The student was already in this unit", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
         }
         _persistentData.Students[lstStudents.SelectedIndex].units.Add(lstUnits.SelectedItem.ToString());
         lstStudentUnits.Items.Clear();
