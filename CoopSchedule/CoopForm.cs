@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using CoopSchedule.External;
@@ -162,6 +163,11 @@ public partial class CoopForm : Form
         grpActiveUnit.Visible = true;
         txtUnitName.Text = unit.Name;
         txtUnitStudents.Text = unit.MaxStudents.ToString();
+        var maxCycles = _persistentData.Students.Count / unit.MaxStudents;
+        lblCyclesLeft.Text = (maxCycles - _persistentData.Students.Count(s => s.units.Contains(unit.Name))).ToString();
+        var txtColor = lblCyclesLeft.Text == "0" ? Color.Red : Color.Black;
+        lblCyclesLeft.ForeColor = txtColor;
+        lblCyclesLabel.ForeColor = txtColor;
     }
 
     private void txtUnitName_TextChanged(object sender, EventArgs e)
@@ -267,6 +273,7 @@ public partial class CoopForm : Form
         _persistentData.Students[lstStudents.SelectedIndex].units.Add(lstUnits.SelectedItem.ToString());
         lstStudentUnits.Items.Clear();
         lstStudentUnits.Items.AddRange(_persistentData.Students[lstStudents.SelectedIndex].units.ToArray());
+        ShowUnit(_persistentData.Units[lstUnits.SelectedIndex]);
     }
 
     private void btnRemoveStudentFromUnit_Click(object sender, EventArgs e)

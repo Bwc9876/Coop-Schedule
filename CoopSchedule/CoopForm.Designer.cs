@@ -34,6 +34,8 @@
             this.btnRemoveUnit = new System.Windows.Forms.Button();
             this.btnAddUnit = new System.Windows.Forms.Button();
             this.grpActiveUnit = new System.Windows.Forms.GroupBox();
+            this.lblCyclesLeft = new System.Windows.Forms.Label();
+            this.lblCyclesLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtUnitStudents = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,7 +67,7 @@
             this.grpStudents.SuspendLayout();
             this.grpActiveStudent.SuspendLayout();
             this.grpGenerate.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.numDays)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDays)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,10 +78,10 @@
             this.grpUnits.Controls.Add(this.grpActiveUnit);
             this.grpUnits.Controls.Add(this.lstUnits);
             this.grpUnits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.grpUnits.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.grpUnits.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpUnits.Location = new System.Drawing.Point(12, 36);
             this.grpUnits.Name = "grpUnits";
-            this.grpUnits.Size = new System.Drawing.Size(355, 223);
+            this.grpUnits.Size = new System.Drawing.Size(355, 229);
             this.grpUnits.TabIndex = 0;
             this.grpUnits.TabStop = false;
             this.grpUnits.Text = "Units";
@@ -89,9 +91,9 @@
             this.btnRemoveUnit.BackColor = System.Drawing.Color.GhostWhite;
             this.btnRemoveUnit.FlatAppearance.BorderColor = System.Drawing.Color.Thistle;
             this.btnRemoveUnit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveUnit.Image = ((System.Drawing.Image) (resources.GetObject("btnRemoveUnit.Image")));
+            this.btnRemoveUnit.Image = ((System.Drawing.Image)(resources.GetObject("btnRemoveUnit.Image")));
             this.btnRemoveUnit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRemoveUnit.Location = new System.Drawing.Point(132, 177);
+            this.btnRemoveUnit.Location = new System.Drawing.Point(132, 188);
             this.btnRemoveUnit.Name = "btnRemoveUnit";
             this.btnRemoveUnit.Size = new System.Drawing.Size(217, 35);
             this.btnRemoveUnit.TabIndex = 3;
@@ -105,9 +107,9 @@
             this.btnAddUnit.BackColor = System.Drawing.Color.GhostWhite;
             this.btnAddUnit.FlatAppearance.BorderColor = System.Drawing.Color.Thistle;
             this.btnAddUnit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddUnit.Image = ((System.Drawing.Image) (resources.GetObject("btnAddUnit.Image")));
+            this.btnAddUnit.Image = ((System.Drawing.Image)(resources.GetObject("btnAddUnit.Image")));
             this.btnAddUnit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddUnit.Location = new System.Drawing.Point(132, 130);
+            this.btnAddUnit.Location = new System.Drawing.Point(132, 141);
             this.btnAddUnit.Name = "btnAddUnit";
             this.btnAddUnit.Size = new System.Drawing.Size(217, 41);
             this.btnAddUnit.TabIndex = 2;
@@ -118,21 +120,41 @@
             // 
             // grpActiveUnit
             // 
+            this.grpActiveUnit.Controls.Add(this.lblCyclesLeft);
+            this.grpActiveUnit.Controls.Add(this.lblCyclesLabel);
             this.grpActiveUnit.Controls.Add(this.label2);
             this.grpActiveUnit.Controls.Add(this.txtUnitStudents);
             this.grpActiveUnit.Controls.Add(this.label1);
             this.grpActiveUnit.Controls.Add(this.txtUnitName);
             this.grpActiveUnit.Location = new System.Drawing.Point(132, 19);
             this.grpActiveUnit.Name = "grpActiveUnit";
-            this.grpActiveUnit.Size = new System.Drawing.Size(217, 105);
+            this.grpActiveUnit.Size = new System.Drawing.Size(217, 116);
             this.grpActiveUnit.TabIndex = 1;
             this.grpActiveUnit.TabStop = false;
             this.grpActiveUnit.Text = "Edit";
             this.grpActiveUnit.Visible = false;
             // 
+            // lblCyclesLeft
+            // 
+            this.lblCyclesLeft.Location = new System.Drawing.Point(102, 82);
+            this.lblCyclesLeft.Name = "lblCyclesLeft";
+            this.lblCyclesLeft.Size = new System.Drawing.Size(94, 20);
+            this.lblCyclesLeft.TabIndex = 5;
+            this.lblCyclesLeft.Text = "0";
+            this.lblCyclesLeft.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblCyclesLabel
+            // 
+            this.lblCyclesLabel.Location = new System.Drawing.Point(6, 82);
+            this.lblCyclesLabel.Name = "lblCyclesLabel";
+            this.lblCyclesLabel.Size = new System.Drawing.Size(90, 20);
+            this.lblCyclesLabel.TabIndex = 4;
+            this.lblCyclesLabel.Text = "Cycles Left";
+            this.lblCyclesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(6, 68);
+            this.label2.Location = new System.Drawing.Point(6, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 20);
             this.label2.TabIndex = 3;
@@ -142,7 +164,7 @@
             // txtUnitStudents
             // 
             this.txtUnitStudents.BackColor = System.Drawing.Color.GhostWhite;
-            this.txtUnitStudents.Location = new System.Drawing.Point(102, 68);
+            this.txtUnitStudents.Location = new System.Drawing.Point(102, 49);
             this.txtUnitStudents.Name = "txtUnitStudents";
             this.txtUnitStudents.Size = new System.Drawing.Size(94, 22);
             this.txtUnitStudents.TabIndex = 2;
@@ -150,7 +172,7 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(6, 31);
+            this.label1.Location = new System.Drawing.Point(6, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 20);
             this.label1.TabIndex = 1;
@@ -160,7 +182,7 @@
             // txtUnitName
             // 
             this.txtUnitName.BackColor = System.Drawing.Color.GhostWhite;
-            this.txtUnitName.Location = new System.Drawing.Point(102, 31);
+            this.txtUnitName.Location = new System.Drawing.Point(102, 21);
             this.txtUnitName.Name = "txtUnitName";
             this.txtUnitName.Size = new System.Drawing.Size(94, 22);
             this.txtUnitName.TabIndex = 0;
@@ -185,7 +207,7 @@
             this.grpStudents.Controls.Add(this.lstStudents);
             this.grpStudents.Location = new System.Drawing.Point(373, 36);
             this.grpStudents.Name = "grpStudents";
-            this.grpStudents.Size = new System.Drawing.Size(363, 329);
+            this.grpStudents.Size = new System.Drawing.Size(363, 335);
             this.grpStudents.TabIndex = 1;
             this.grpStudents.TabStop = false;
             this.grpStudents.Text = "Students";
@@ -195,7 +217,7 @@
             this.btnRemoveStudent.BackColor = System.Drawing.Color.GhostWhite;
             this.btnRemoveStudent.FlatAppearance.BorderColor = System.Drawing.Color.Thistle;
             this.btnRemoveStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveStudent.Image = ((System.Drawing.Image) (resources.GetObject("btnRemoveStudent.Image")));
+            this.btnRemoveStudent.Image = ((System.Drawing.Image)(resources.GetObject("btnRemoveStudent.Image")));
             this.btnRemoveStudent.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemoveStudent.Location = new System.Drawing.Point(132, 280);
             this.btnRemoveStudent.Name = "btnRemoveStudent";
@@ -227,11 +249,11 @@
             this.btnAddStudentUnit.BackColor = System.Drawing.Color.GhostWhite;
             this.btnAddStudentUnit.FlatAppearance.BorderColor = System.Drawing.Color.Thistle;
             this.btnAddStudentUnit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddStudentUnit.Image = ((System.Drawing.Image) (resources.GetObject("btnAddStudentUnit.Image")));
+            this.btnAddStudentUnit.Image = ((System.Drawing.Image)(resources.GetObject("btnAddStudentUnit.Image")));
             this.btnAddStudentUnit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddStudentUnit.Location = new System.Drawing.Point(6, 120);
+            this.btnAddStudentUnit.Location = new System.Drawing.Point(21, 120);
             this.btnAddStudentUnit.Name = "btnAddStudentUnit";
-            this.btnAddStudentUnit.Size = new System.Drawing.Size(90, 32);
+            this.btnAddStudentUnit.Size = new System.Drawing.Size(75, 32);
             this.btnAddStudentUnit.TabIndex = 9;
             this.btnAddStudentUnit.Text = "Add";
             this.btnAddStudentUnit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -243,11 +265,11 @@
             this.btnRemoveStudentFromUnit.BackColor = System.Drawing.Color.GhostWhite;
             this.btnRemoveStudentFromUnit.FlatAppearance.BorderColor = System.Drawing.Color.Thistle;
             this.btnRemoveStudentFromUnit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveStudentFromUnit.Image = ((System.Drawing.Image) (resources.GetObject("btnRemoveStudentFromUnit.Image")));
+            this.btnRemoveStudentFromUnit.Image = ((System.Drawing.Image)(resources.GetObject("btnRemoveStudentFromUnit.Image")));
             this.btnRemoveStudentFromUnit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRemoveStudentFromUnit.Location = new System.Drawing.Point(6, 154);
+            this.btnRemoveStudentFromUnit.Location = new System.Drawing.Point(21, 154);
             this.btnRemoveStudentFromUnit.Name = "btnRemoveStudentFromUnit";
-            this.btnRemoveStudentFromUnit.Size = new System.Drawing.Size(90, 32);
+            this.btnRemoveStudentFromUnit.Size = new System.Drawing.Size(75, 32);
             this.btnRemoveStudentFromUnit.TabIndex = 8;
             this.btnRemoveStudentFromUnit.Text = "Remove";
             this.btnRemoveStudentFromUnit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -296,7 +318,7 @@
             this.btnAddStudent.BackColor = System.Drawing.Color.GhostWhite;
             this.btnAddStudent.FlatAppearance.BorderColor = System.Drawing.Color.Thistle;
             this.btnAddStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddStudent.Image = ((System.Drawing.Image) (resources.GetObject("btnAddStudent.Image")));
+            this.btnAddStudent.Image = ((System.Drawing.Image)(resources.GetObject("btnAddStudent.Image")));
             this.btnAddStudent.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddStudent.Location = new System.Drawing.Point(132, 229);
             this.btnAddStudent.Name = "btnAddStudent";
@@ -323,7 +345,7 @@
             this.grpGenerate.Controls.Add(this.btnGenerate);
             this.grpGenerate.Controls.Add(this.lblDays);
             this.grpGenerate.Controls.Add(this.numDays);
-            this.grpGenerate.Location = new System.Drawing.Point(12, 265);
+            this.grpGenerate.Location = new System.Drawing.Point(12, 271);
             this.grpGenerate.Name = "grpGenerate";
             this.grpGenerate.Size = new System.Drawing.Size(355, 100);
             this.grpGenerate.TabIndex = 2;
@@ -332,11 +354,11 @@
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGenerate.BackColor = System.Drawing.Color.GhostWhite;
             this.btnGenerate.FlatAppearance.BorderColor = System.Drawing.Color.Thistle;
             this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerate.Image = ((System.Drawing.Image) (resources.GetObject("btnGenerate.Image")));
+            this.btnGenerate.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerate.Image")));
             this.btnGenerate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGenerate.Location = new System.Drawing.Point(175, 27);
             this.btnGenerate.Name = "btnGenerate";
@@ -361,18 +383,18 @@
             this.numDays.BackColor = System.Drawing.Color.GhostWhite;
             this.numDays.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numDays.Location = new System.Drawing.Point(85, 45);
-            this.numDays.Maximum = new decimal(new int[] {25, 0, 0, 0});
-            this.numDays.Minimum = new decimal(new int[] {1, 0, 0, 0});
+            this.numDays.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            this.numDays.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             this.numDays.Name = "numDays";
             this.numDays.Size = new System.Drawing.Size(74, 22);
             this.numDays.TabIndex = 3;
             this.numDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numDays.Value = new decimal(new int[] {4, 0, 0, 0});
+            this.numDays.Value = new decimal(new int[] { 4, 0, 0, 0 });
             // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.AliceBlue;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.fileToolStripMenuItem});
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.fileToolStripMenuItem });
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(743, 30);
@@ -382,8 +404,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.saveToolStripMenuItem, this.resetStudentUnitsToolStripMenuItem, this.resetAllToolStripMenuItem, this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Image = ((System.Drawing.Image) (resources.GetObject("fileToolStripMenuItem.Image")));
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.saveToolStripMenuItem, this.resetStudentUnitsToolStripMenuItem, this.resetAllToolStripMenuItem, this.exitToolStripMenuItem });
+            this.fileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("fileToolStripMenuItem.Image")));
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(65, 26);
@@ -392,7 +414,7 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
-            this.saveToolStripMenuItem.Image = ((System.Drawing.Image) (resources.GetObject("saveToolStripMenuItem.Image")));
+            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
@@ -402,7 +424,7 @@
             // resetStudentUnitsToolStripMenuItem
             // 
             this.resetStudentUnitsToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
-            this.resetStudentUnitsToolStripMenuItem.Image = ((System.Drawing.Image) (resources.GetObject("resetStudentUnitsToolStripMenuItem.Image")));
+            this.resetStudentUnitsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("resetStudentUnitsToolStripMenuItem.Image")));
             this.resetStudentUnitsToolStripMenuItem.Name = "resetStudentUnitsToolStripMenuItem";
             this.resetStudentUnitsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.resetStudentUnitsToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
@@ -412,7 +434,7 @@
             // resetAllToolStripMenuItem
             // 
             this.resetAllToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
-            this.resetAllToolStripMenuItem.Image = ((System.Drawing.Image) (resources.GetObject("resetAllToolStripMenuItem.Image")));
+            this.resetAllToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("resetAllToolStripMenuItem.Image")));
             this.resetAllToolStripMenuItem.Name = "resetAllToolStripMenuItem";
             this.resetAllToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.resetAllToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
@@ -422,7 +444,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
-            this.exitToolStripMenuItem.Image = ((System.Drawing.Image) (resources.GetObject("exitToolStripMenuItem.Image")));
+            this.exitToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exitToolStripMenuItem.Image")));
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(176, 24);
@@ -434,15 +456,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(743, 373);
+            this.ClientSize = new System.Drawing.Size(743, 383);
             this.Controls.Add(this.grpGenerate);
             this.Controls.Add(this.grpStudents);
             this.Controls.Add(this.grpUnits);
             this.Controls.Add(this.menuStrip1);
-            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(759, 412);
@@ -458,12 +480,15 @@
             this.grpActiveStudent.ResumeLayout(false);
             this.grpActiveStudent.PerformLayout();
             this.grpGenerate.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize) (this.numDays)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDays)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label lblCyclesLabel;
+        private System.Windows.Forms.Label lblCyclesLeft;
 
         private System.Windows.Forms.Button btnAddStudentUnit;
 
