@@ -143,21 +143,21 @@ public partial class CoopForm : Form
         lstUnits.SelectedIndex = currentIndex < lstUnits.Items.Count ? currentIndex : -1;
         if (lstUnits.Items.Count == 0) grpActiveUnit.Visible = false;
     }
-    
+
     private void importToolStripMenuItem1_Click(object sender, EventArgs e)
     {
         var diag = new OpenFileDialog
         {
             Filter = @"CSV Files (*.csv)|*.csv",
             DefaultExt = ".csv",
-            Title = @"Import Units",
+            Title = @"Import Units"
         };
 
         if (diag.ShowDialog() != DialogResult.OK) return;
 
         var units = File.ReadAllLines(diag.FileName);
         var newUnits = new List<UnitData>();
-        
+
         foreach (var unit in units)
         {
             var split = unit.Split(',');
@@ -169,10 +169,11 @@ public partial class CoopForm : Form
                 Name = split[0].Replace(CommaEscape, ",")
             });
         }
+
         _persistentData.Units.AddRange(newUnits);
         ResetUnitListBox();
     }
-    
+
     private void exportToolStripMenuItem1_Click(object sender, EventArgs e)
     {
         var diag = new SaveFileDialog
@@ -180,7 +181,7 @@ public partial class CoopForm : Form
             Filter = @"CSV Files (*.csv)|*.csv",
             AddExtension = true,
             DefaultExt = ".csv",
-            Title = @"Export Units",
+            Title = @"Export Units"
         };
 
         if (diag.ShowDialog() != DialogResult.OK) return;
@@ -188,7 +189,7 @@ public partial class CoopForm : Form
         var units = _persistentData.Units.Select(u => $"{u.Name.Replace(",", CommaEscape)},{u.MaxStudents}");
         File.WriteAllLines(diag.FileName, units);
     }
-    
+
     private void clearToolStripMenuItem1_Click(object sender, EventArgs e)
     {
         if (MessageBox.Show(@"This will clear all units, are you sure?", @"Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
@@ -271,7 +272,7 @@ public partial class CoopForm : Form
         lstStudentUnits.Items.Clear();
         lstStudentUnits.Items.AddRange(_persistentData.Students[lstStudents.SelectedIndex].units.ToArray());
     }
-    
+
     private void importToolStripMenuItem_Click(object sender, EventArgs e)
     {
         var diag = new OpenFileDialog
@@ -292,11 +293,12 @@ public partial class CoopForm : Form
                 units = split[1].Split(';').Select(s => s.Replace(SemiEscape, ";")).ToList()
             });
         }
+
         _persistentData.Students.AddRange(newStudents);
         ResetStudentsListBox();
         _persistentData.Save(FileName);
     }
-    
+
     private void exportToolStripMenuItem_Click(object sender, EventArgs e)
     {
         var diag = new SaveFileDialog
@@ -308,14 +310,14 @@ public partial class CoopForm : Form
         var students = _persistentData.Students.Select(s => $"{s.name.Replace(",", CommaEscape)},{string.Join(";", s.units.Select(u => u.Replace(";", SemiEscape)))}");
         File.WriteAllLines(diag.FileName, students);
     }
-    
+
     private void clearToolStripMenuItem_Click(object sender, EventArgs e)
     {
         if (MessageBox.Show(@"This will clear all students, are you sure?", @"Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
         _persistentData.Students.Clear();
         ResetStudentsListBox();
     }
-    
+
     private void btnSwitchSession_Click(object sender, EventArgs e)
     {
         _persistentData.CurrentSession = _persistentData.CurrentSession == Session.AM ? Session.PM : Session.AM;
@@ -363,7 +365,7 @@ public partial class CoopForm : Form
 
         lstStudents.Items[lstStudents.SelectedIndex] = _persistentData.Students[lstStudents.SelectedIndex];
     }
-    
+
     private void btnAddStudentUnit_Click(object sender, EventArgs e)
     {
         if (lstUnits.SelectedIndex < 0)
@@ -371,11 +373,13 @@ public partial class CoopForm : Form
             MessageBox.Show("Please select a unit to add the student to", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
+
         if (_persistentData.Students[lstStudents.SelectedIndex].units.Exists(s => s == lstUnits.SelectedItem.ToString()))
         {
             MessageBox.Show("The student was already in this unit", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
+
         _persistentData.Students[lstStudents.SelectedIndex].units.Add(lstUnits.SelectedItem.ToString());
         lstStudentUnits.Items.Clear();
         lstStudentUnits.Items.AddRange(_persistentData.Students[lstStudents.SelectedIndex].units.ToArray());

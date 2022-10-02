@@ -24,7 +24,7 @@ public static class ScheduleHandler
         }
 
         table.PreCollapse(previousStates);
-        
+
         var targetCollapses = students * days;
         var currentStage = 0;
 
