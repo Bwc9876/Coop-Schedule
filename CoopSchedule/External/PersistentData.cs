@@ -4,16 +4,25 @@ using Newtonsoft.Json;
 
 namespace CoopSchedule.External;
 
+public enum Session
+{
+    AM = 0,
+    PM = 1
+}
+
 [JsonObject]
 public class PersistentData
 {
     public static readonly PersistentData DefaultData = new()
     {
-        Students = new List<StudentData>(),
+        Sessions = new[] {new List<StudentData>(), new List<StudentData>()},
+        CurrentSession = Session.AM,
         Units = new List<UnitData>()
     };
 
-    public List<StudentData> Students { get; set; }
+    [JsonIgnore] public List<StudentData> Students => Sessions[(int) CurrentSession];
+    public List<StudentData>[] Sessions { get; set; }
+    public Session CurrentSession { get; set; }
     public List<UnitData> Units { get; set; }
 
     public static PersistentData Load(string path)

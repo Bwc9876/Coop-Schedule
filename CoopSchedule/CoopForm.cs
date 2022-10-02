@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using CoopSchedule.External;
@@ -11,6 +12,8 @@ namespace CoopSchedule;
 public partial class CoopForm : Form
 {
     private const string FileName = "data.json";
+    private const string CommaEscape = "&comm;";
+    private const string SemiEscape = "&semi;";
     private PersistentData _persistentData;
 
     public CoopForm()
@@ -94,6 +97,7 @@ public partial class CoopForm : Form
         _persistentData = PersistentData.Load(FileName);
         ResetUnitListBox();
         ResetStudentsListBox();
+        btnSwitchSession.Text = $"Switch To {_persistentData.CurrentSession}";
     }
 
     private void CoopForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -138,6 +142,58 @@ public partial class CoopForm : Form
         lstUnits.Items.AddRange(_persistentData.Units.ToArray());
         lstUnits.SelectedIndex = currentIndex < lstUnits.Items.Count ? currentIndex : -1;
         if (lstUnits.Items.Count == 0) grpActiveUnit.Visible = false;
+    }
+    
+    private void importToolStripMenuItem1_Click(object sender, EventArgs e)
+    {
+        var diag = new OpenFileDialog
+        {
+            Filter = @"CSV Files (*.csv)|*.csv",
+            DefaultExt = ".csv",
+            Title = @"Import Units",
+        };
+
+        if (diag.ShowDialog() != DialogResult.OK) return;
+
+        var units = File.ReadAllLines(diag.FileName);
+        var newUnits = new List<UnitData>();
+        
+        foreach (var unit in units)
+        {
+            var split = unit.Split(',');
+            if (split.Length != 2) continue;
+            if (!int.TryParse(split[1], out var max)) continue;
+            newUnits.Add(new UnitData
+            {
+                MaxStudents = max,
+                Name = split[0].Replace(CommaEscape, ",")
+            });
+        }
+        _persistentData.Units.AddRange(newUnits);
+        ResetUnitListBox();
+    }
+    
+    private void exportToolStripMenuItem1_Click(object sender, EventArgs e)
+    {
+        var diag = new SaveFileDialog
+        {
+            Filter = @"CSV Files (*.csv)|*.csv",
+            AddExtension = true,
+            DefaultExt = ".csv",
+            Title = @"Export Units",
+        };
+
+        if (diag.ShowDialog() != DialogResult.OK) return;
+
+        var units = _persistentData.Units.Select(u => $"{u.Name.Replace(",", CommaEscape)},{u.MaxStudents}");
+        File.WriteAllLines(diag.FileName, units);
+    }
+    
+    private void clearToolStripMenuItem1_Click(object sender, EventArgs e)
+    {
+        if (MessageBox.Show(@"This will clear all units, are you sure?", @"Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
+        _persistentData.Units.Clear();
+        ResetUnitListBox();
     }
 
     private void btnAddUnit_Click(object sender, EventArgs e)
@@ -210,11 +266,61 @@ public partial class CoopForm : Form
         lstStudents.Items.AddRange(_persistentData.Students.ToArray());
         lstStudents.SelectedIndex = currentIndex < lstStudents.Items.Count ? currentIndex : -1;
         if (lstStudents.Items.Count == 0) grpActiveStudent.Visible = false;
-        if (lstStudents.SelectedIndex != -1)
+        if (lstUnits.SelectedIndex != -1) ShowUnit(_persistentData.Units[lstUnits.SelectedIndex]);
+        if (lstStudents.SelectedIndex == -1) return;
+        lstStudentUnits.Items.Clear();
+        lstStudentUnits.Items.AddRange(_persistentData.Students[lstStudents.SelectedIndex].units.ToArray());
+    }
+    
+    private void importToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        var diag = new OpenFileDialog
         {
-            lstStudentUnits.Items.Clear();
-            lstStudentUnits.Items.AddRange(_persistentData.Students[lstStudents.SelectedIndex].units.ToArray());
+            Filter = @"CSV Files|*.csv",
+            Title = @"Import Students"
+        };
+        if (diag.ShowDialog() != DialogResult.OK) return;
+        var students = File.ReadAllLines(diag.FileName);
+        var newStudents = new List<StudentData>();
+        foreach (var student in students)
+        {
+            var split = student.Split(',');
+            if (split.Length != 2) continue;
+            newStudents.Add(new StudentData
+            {
+                name = split[0].Replace(CommaEscape, ","),
+                units = split[1].Split(';').Select(s => s.Replace(SemiEscape, ";")).ToList()
+            });
         }
+        _persistentData.Students.AddRange(newStudents);
+        ResetStudentsListBox();
+        _persistentData.Save(FileName);
+    }
+    
+    private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        var diag = new SaveFileDialog
+        {
+            Filter = @"CSV Files|*.csv",
+            Title = @"Export Students"
+        };
+        if (diag.ShowDialog() != DialogResult.OK) return;
+        var students = _persistentData.Students.Select(s => $"{s.name.Replace(",", CommaEscape)},{string.Join(";", s.units.Select(u => u.Replace(";", SemiEscape)))}");
+        File.WriteAllLines(diag.FileName, students);
+    }
+    
+    private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (MessageBox.Show(@"This will clear all students, are you sure?", @"Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
+        _persistentData.Students.Clear();
+        ResetStudentsListBox();
+    }
+    
+    private void btnSwitchSession_Click(object sender, EventArgs e)
+    {
+        _persistentData.CurrentSession = _persistentData.CurrentSession == Session.AM ? Session.PM : Session.AM;
+        btnSwitchSession.Text = $"Switch To {_persistentData.CurrentSession}";
+        ResetStudentsListBox();
     }
 
     private void btnAddStudent_Click(object sender, EventArgs e)
@@ -285,6 +391,4 @@ public partial class CoopForm : Form
     }
 
     #endregion
-
-    
 }
