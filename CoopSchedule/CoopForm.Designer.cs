@@ -492,7 +492,7 @@
             this.importToolStripMenuItem.Image = ((System.Drawing.Image) (resources.GetObject("importToolStripMenuItem.Image")));
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
@@ -502,7 +502,7 @@
             this.exportToolStripMenuItem.Image = ((System.Drawing.Image) (resources.GetObject("exportToolStripMenuItem.Image")));
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
             this.exportToolStripMenuItem.Text = "Export";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
@@ -512,7 +512,7 @@
             this.clearToolStripMenuItem.Image = ((System.Drawing.Image) (resources.GetObject("clearToolStripMenuItem.Image")));
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
             this.clearToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
@@ -531,7 +531,7 @@
             this.importToolStripMenuItem1.Image = ((System.Drawing.Image) (resources.GetObject("importToolStripMenuItem1.Image")));
             this.importToolStripMenuItem1.Name = "importToolStripMenuItem1";
             this.importToolStripMenuItem1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.importToolStripMenuItem1.Size = new System.Drawing.Size(152, 24);
+            this.importToolStripMenuItem1.Size = new System.Drawing.Size(110, 24);
             this.importToolStripMenuItem1.Text = "Import";
             this.importToolStripMenuItem1.Click += new System.EventHandler(this.importToolStripMenuItem1_Click);
             // 
@@ -541,7 +541,7 @@
             this.exportToolStripMenuItem1.Image = ((System.Drawing.Image) (resources.GetObject("exportToolStripMenuItem1.Image")));
             this.exportToolStripMenuItem1.Name = "exportToolStripMenuItem1";
             this.exportToolStripMenuItem1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(152, 24);
+            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(110, 24);
             this.exportToolStripMenuItem1.Text = "Export";
             this.exportToolStripMenuItem1.Click += new System.EventHandler(this.exportToolStripMenuItem1_Click);
             // 
@@ -551,7 +551,7 @@
             this.clearToolStripMenuItem1.Image = ((System.Drawing.Image) (resources.GetObject("clearToolStripMenuItem1.Image")));
             this.clearToolStripMenuItem1.Name = "clearToolStripMenuItem1";
             this.clearToolStripMenuItem1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.clearToolStripMenuItem1.Size = new System.Drawing.Size(152, 24);
+            this.clearToolStripMenuItem1.Size = new System.Drawing.Size(110, 24);
             this.clearToolStripMenuItem1.Text = "Clear";
             this.clearToolStripMenuItem1.Click += new System.EventHandler(this.clearToolStripMenuItem1_Click);
             // 
