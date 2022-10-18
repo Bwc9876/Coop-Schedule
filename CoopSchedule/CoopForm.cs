@@ -97,7 +97,8 @@ public partial class CoopForm : Form
         _persistentData = PersistentData.Load(FileName);
         ResetUnitListBox();
         ResetStudentsListBox();
-        btnSwitchSession.Text = $"Switch To {_persistentData.CurrentSession}";
+        var newSession = _persistentData.CurrentSession == Session.AM ? Session.PM : Session.AM;
+        btnSwitchSession.Text = $"Switch To {newSession}";
     }
 
     private void CoopForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -320,8 +321,8 @@ public partial class CoopForm : Form
 
     private void btnSwitchSession_Click(object sender, EventArgs e)
     {
-        _persistentData.CurrentSession = _persistentData.CurrentSession == Session.AM ? Session.PM : Session.AM;
         btnSwitchSession.Text = $"Switch To {_persistentData.CurrentSession}";
+        _persistentData.CurrentSession = _persistentData.CurrentSession == Session.AM ? Session.PM : Session.AM;
         ResetStudentsListBox();
     }
 
